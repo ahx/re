@@ -22,6 +22,13 @@ describe 'tracking' do
     email = ActionMailer::Base.deliveries.last
     email.to.should include(user.email)
     email.subject.should include(%(Deine E-Mail "Hello" wurde geöffnet))
+    email.body.raw_source.should include(%(Diese E-Mail wurde bis jetzt 1 mal geöffnet))
+
+    get "http://example.com/tracker/#{uuid}/tracker.gif", {}, { "HTTP_USER_AGENT" => "MYBrowser 1.0"}
+    email = ActionMailer::Base.deliveries.last
+    email.body.raw_source.should include(%(Diese E-Mail wurde bis jetzt 2 mal geöffnet))
+    email.body.raw_source.should include("MYBrowser 1.0")
+    email.body.raw_source.should include("127.0.0.1")
   end
 
   it "returns a 401 unauthorized with an invalid api_key" do

@@ -1,1 +1,7 @@
-Deine E-Mail wurde gelesen.
+Deine E-Mail "#{@tracker.subject}" wurde gelesen.
+
+Informationen über den Leser:
+  IP-Adresse: <%= @view.request_ip %>
+  User-Agent: <%= @view.user_agent %>
+
+Diese E-Mail wurde bis jetzt <%= @tracker.views.count %> mal geöffnet.

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130928122122) do
+ActiveRecord::Schema.define(version: 20130928153447) do
 
   create_table "trackers", force: true do |t|
     t.string   "sender"
@@ -30,5 +30,15 @@ ActiveRecord::Schema.define(version: 20130928122122) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+
+  create_table "views", force: true do |t|
+    t.integer  "tracker_id"
+    t.string   "request_ip"
+    t.string   "user_agent"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "views", ["tracker_id"], name: "index_views_on_tracker_id"
 
 end

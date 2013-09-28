@@ -11,7 +11,8 @@ class TrackersController < ApplicationController
 
   def show
     tracker = Tracker.where(message_token: params[:id]).first!
-    ReceiptMailer.read_confirmation(tracker).deliver
+    view = View.create!(tracker: tracker, request_ip: request.remote_ip, user_agent: request.user_agent)
+    ReceiptMailer.read_confirmation(tracker, view).deliver
     render status: :ok
   end
 
@@ -27,4 +28,3 @@ class TrackersController < ApplicationController
     User.where(api_key: params[:api_key]).first
   end
 end
- 

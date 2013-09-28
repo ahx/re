@@ -28,8 +28,14 @@ gem 'jquery-rails'
 
 gem 'gumby-rails'
 
+gem 'slim-rails'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+#gem 'turbolinks'
+
+gem 'guard-livereload'
+gem 'better_errors'
+gem 'binding_of_caller'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

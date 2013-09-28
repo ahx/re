@@ -13,5 +13,4 @@
 
 
 //= require jquery
-//= require gumby
 //= require browserid

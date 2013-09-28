@@ -74,7 +74,6 @@ GEM
       em-websocket (>= 0.5.0)
       guard (>= 1.8.0)
       multi_json (~> 1.7)
-    gumby-rails (1.1)
     hike (1.2.3)
     http_parser.rb (0.5.3)
     i18n (0.6.5)
@@ -185,7 +184,6 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   factory_girl_rails
   guard-livereload
-  gumby-rails
   jquery-rails
   mysql2
   pry

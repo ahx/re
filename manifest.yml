@@ -1,0 +1,14 @@
+---
+applications:
+- name: re
+  memory: 256M
+  instances: 1
+  host: re
+  domain: de.a9sapp.eu
+  path: .
+  services:
+    mysql-10ad2:
+      label: mysql
+      provider: core
+      version: '5.5'
+      plan: '100'

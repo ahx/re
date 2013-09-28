@@ -6,6 +6,9 @@ gem 'rails', '4.0.0'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
+# and mysql for production
+gem 'mysql2'
+
 gem 'browserid-rails', git: 'https://github.com/banux/browserid-rails.git'
 
 # Use SCSS for stylesheets

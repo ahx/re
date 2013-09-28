@@ -14,7 +14,7 @@ describe 'tracking' do
 
     uuid = Tracker.last.message_token
     url = "http://www.example.com/tracker/#{uuid}/tracker.gif"
-    expect(response.body).to include(%(<img src="#{url}"))
+    expect(response.body).to include(%(<img src="#{url}" moz-do-not-send="true">))
     get url
     expect(response.status).to eq 200
 

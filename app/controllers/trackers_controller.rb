@@ -3,11 +3,11 @@ class TrackersController < ApplicationController
   before_action :require_api_authentication, only: :create
 
   def create
-    tracker = Tracker.create!(message_token: SecureRandom.uuid,
+    @tracker = Tracker.create!(message_token: SecureRandom.uuid,
       recipient: params[:recipient],
       subject: params[:subject],
       sender: current_api_user.email)
-    render text: %(<img src="#{tracker_snippet_url(id: tracker.message_token)}" moz-do-not-send="true"">)
+    render layout: false
   end
 
   def show
@@ -21,7 +21,7 @@ class TrackersController < ApplicationController
 
   def require_api_authentication
     if current_api_user.blank?
-      render status: 401
+      render text: 'not allowed', status: 401
     end
   end
 

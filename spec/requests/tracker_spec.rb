@@ -8,7 +8,7 @@ describe 'tracking' do
   it "returns a tracker HTML snippet and requesting it sends an email" do
     post '/tracker', {
       recipient: 'email@example.com',
-      subject: 'Hello',
+      subject: 'MySubject',
       api_key: user.api_key
     }
 
@@ -20,12 +20,13 @@ describe 'tracking' do
 
     email = ActionMailer::Base.deliveries.last
     email.to.should include(user.email)
-    email.subject.should include(%(Deine E-Mail "Hello" wurde geöffnet))
+    email.subject.should include(%(Deine E-Mail "MySubject" wurde geöffnet))
     email.body.raw_source.should include(%(Diese E-Mail wurde bis jetzt 1 mal geöffnet))
 
     get "http://www.example.com/tracker/#{uuid}/tracker.gif", {}, { "HTTP_USER_AGENT" => "MYBrowser 1.0"}
     email = ActionMailer::Base.deliveries.last
-    email.body.raw_source.should include(%(Diese E-Mail wurde bis jetzt 2 mal geöffnet))
+    email.body.raw_source.should include("MySubject")
+    email.body.raw_source.should include("Diese E-Mail wurde bis jetzt 2 mal geöffnet")
     email.body.raw_source.should include("MYBrowser 1.0")
     email.body.raw_source.should include("127.0.0.1")
   end

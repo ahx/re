@@ -12,11 +12,10 @@ describe 'tracking' do
       api_key: user.api_key
     }
 
-    expect(response.body).to match('<img src="http://example.com/tracker/')
-    expect(response.body).to match('tracker.gif">')
-
     uuid = Tracker.last.message_token
-    get "http://example.com/tracker/#{uuid}/tracker.gif"
+    url = "http://www.example.com/tracker/#{uuid}/tracker.gif"
+    expect(response.body).to include(%(<img src="#{url}"))
+    get url
     expect(response.status).to eq 200
 
     email = ActionMailer::Base.deliveries.last
@@ -24,7 +23,7 @@ describe 'tracking' do
     email.subject.should include(%(Deine E-Mail "Hello" wurde geöffnet))
     email.body.raw_source.should include(%(Diese E-Mail wurde bis jetzt 1 mal geöffnet))
 
-    get "http://example.com/tracker/#{uuid}/tracker.gif", {}, { "HTTP_USER_AGENT" => "MYBrowser 1.0"}
+    get "http://www.example.com/tracker/#{uuid}/tracker.gif", {}, { "HTTP_USER_AGENT" => "MYBrowser 1.0"}
     email = ActionMailer::Base.deliveries.last
     email.body.raw_source.should include(%(Diese E-Mail wurde bis jetzt 2 mal geöffnet))
     email.body.raw_source.should include("MYBrowser 1.0")

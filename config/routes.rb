@@ -3,7 +3,7 @@ Re::Application.routes.draw do
   post 'logout' => 'sessions#destroy'
 
   post '/tracker' => 'trackers#create'
-  get '/tracker/:id/tracker.gif' => 'trackers#show'
+  get '/tracker/:id/tracker.gif' => 'trackers#show', as: 'tracker_snippet'
 
   root 'homepage#index'
 

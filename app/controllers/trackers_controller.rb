@@ -6,7 +6,7 @@ class TrackersController < ApplicationController
       recipient: params[:recipient],
       subject: params[:subject],
       sender: current_api_user.email)
-    render text: %(<img src="http://example.com/tracker/#{tracker.message_token}/tracker.gif">)
+    render text: %(<img src="#{tracker_snippet_url(id: tracker.message_token)}" moz-do-not-send="true"">)
   end
 
   def show

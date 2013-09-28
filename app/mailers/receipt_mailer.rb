@@ -1,5 +1,5 @@
 class ReceiptMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: "noreply@re.de.a9sapp.eu"
 
   def read_confirmation(tracker, view)
     @tracker = tracker

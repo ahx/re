@@ -68,7 +68,7 @@ Re::Application.configure do
        :address => "smtp.mailgun.org",
        :port => 587,
        :domain => "re.mailgun.org",
-       :user_name => "bremenhack@re.mailgun.org",
+       :user_name => "postmaster@re.mailgun.org",
        :password => "7y8j63e7tek7"
   }
 

@@ -1,6 +1,10 @@
 Re::Application.routes.draw do
   post 'login' => 'sessions#create'
   post 'logout' => 'sessions#destroy'
+
+  post '/tracker' => 'trackers#create'
+  get '/tracker/:id/tracker.gif' => 'trackers#show'
+
   root 'homepage#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

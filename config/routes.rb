@@ -1,4 +1,6 @@
 Re::Application.routes.draw do
+  resource :settings, only: [:show, :update]
+
   post 'login' => 'sessions#create'
   post 'logout' => 'sessions#destroy'
 

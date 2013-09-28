@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130928153447) do
+ActiveRecord::Schema.define(version: 20130929010225) do
 
   create_table "trackers", force: true do |t|
     t.string   "sender"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 20130928153447) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "api_key"
+    t.string   "signature_image"
+    t.string   "signature_image_setting"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

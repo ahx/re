@@ -1,4 +1,5 @@
 class TrackersController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :require_api_authentication, only: :create
 
   def create

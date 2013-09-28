@@ -66,6 +66,7 @@ GEM
     mime-types (1.25)
     minitest (4.7.5)
     multi_json (1.8.0)
+    mysql2 (0.3.13)
     polyglot (0.3.3)
     pry (0.9.12.2)
       coderay (~> 1.0.5)
@@ -143,6 +144,7 @@ DEPENDENCIES
   factory_girl_rails
   gumby-rails
   jquery-rails
+  mysql2
   pry
   rails (= 4.0.0)
   rspec-rails

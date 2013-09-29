@@ -13,7 +13,8 @@ html.no-js lang=(I18n.locale || 'de')
         'article aside footer header nav section time'.replace(/\w+/g,function(n){document.createElement(n)})
 
   body
-    = render 'layouts/navbar'
+    - if authenticated?
+      = render 'layouts/navbar'
     .container
       .page-header
         h1

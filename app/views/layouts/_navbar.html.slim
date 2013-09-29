@@ -3,8 +3,8 @@ nav.navbar.navbar-default
     = link_to 'Re:', root_url,  class: 'navbar-brand'
     p.navbar-text.navbar-right
       - if authenticated?
-        '  eingeloggt als:
-        = link_to browserid_email, '#'
+        '  eingeloggt als
+        = link_to browserid_email, settings_path
   ul.nav.navbar-nav.navbar-right
     - if authenticated?
       li  = link_to "Einstellungen", settings_path

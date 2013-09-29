@@ -12,8 +12,11 @@ describe 'tracking' do
       api_key: user.api_key
     }
 
-    uuid = Tracker.last.message_token
-    url = "http://www.example.com/tracker/#{uuid}/tracker.gif"
+    tracker = Tracker.last
+    uuid = tracker.message_token
+    tracker.user.should eq user # FIXME Move to controller spec
+
+    url = "http://www.example.com/tracker/#{uuid}/tracker.jpg"
     expect(response.body).to include(%(<img src="#{url}" moz-do-not-send="true">))
     get url
     expect(response.status).to eq 200
@@ -23,7 +26,7 @@ describe 'tracking' do
     email.subject.should include(%(Deine E-Mail "MySubject" wurde geöffnet))
     email.body.raw_source.should include(%(Diese E-Mail wurde bis jetzt 1 mal geöffnet))
 
-    get "http://www.example.com/tracker/#{uuid}/tracker.gif", {}, { "HTTP_USER_AGENT" => "MYBrowser 1.0"}
+    get "http://www.example.com/tracker/#{uuid}/tracker.jpg", {}, { "HTTP_USER_AGENT" => "MYBrowser 1.0"}
     email = ActionMailer::Base.deliveries.last
     email.body.raw_source.should include("MySubject")
     email.body.raw_source.should include("Diese E-Mail wurde bis jetzt 2 mal geöffnet")

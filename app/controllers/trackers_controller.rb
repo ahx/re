@@ -4,6 +4,7 @@ class TrackersController < ApplicationController
 
   def create
     @tracker = Tracker.create!(message_token: SecureRandom.uuid,
+      user: current_api_user,
       recipient: params[:recipient],
       subject: params[:subject],
       sender: current_api_user.email)
@@ -14,7 +15,14 @@ class TrackersController < ApplicationController
     tracker = Tracker.where(message_token: params[:id]).first!
     view = View.create!(tracker: tracker, request_ip: request.remote_ip, user_agent: request.user_agent)
     ReceiptMailer.read_confirmation(tracker, view).deliver
-    render text: '', status: :ok
+
+    # FIXME Spec this
+    if tracker.user.signature_image_setting == 'gravatar'
+      redirect_to ApplicationHelper.gravatar_url_for(current_user.email)
+    else
+      image_url = tracker.user.signature_image.versions[:mini].path
+      send_file image_url || Rails.root.join('app/assets/images/fallback/tracker.png')
+    end
   end
 
   private

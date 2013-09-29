@@ -12,6 +12,7 @@ gem 'mysql2'
 gem 'browserid-rails', git: 'https://github.com/banux/browserid-rails.git'
 
 gem 'carrierwave'
+gem 'mini_magick'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'

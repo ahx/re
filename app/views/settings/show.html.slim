@@ -5,7 +5,7 @@
     label
       = f.radio_button(:signature_image_setting, "gravatar")
       | Gravatar
-      = image_tag(signature_image_url_for(current_user), alt: nil)
+      = image_tag(gravatar_url_for(current_user.email), alt: nil)
   div
     label
       = f.radio_button(:signature_image_setting, "custom")

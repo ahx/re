@@ -14,7 +14,7 @@ class TrackersController < ApplicationController
     tracker = Tracker.where(message_token: params[:id]).first!
     view = View.create!(tracker: tracker, request_ip: request.remote_ip, user_agent: request.user_agent)
     ReceiptMailer.read_confirmation(tracker, view).deliver
-    render status: :ok
+    render text: '', status: :ok
   end
 
   private

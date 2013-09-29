@@ -4,11 +4,20 @@
     h3 Und so geht's:
 
     ol
-      li Tracker-plugin installieren
+      li Tracker-Plugin installieren
       li E-Mail versenden
       li Empfangsbestätigung bekommen sobald die E-Mail geöffnet wird
 
     - if authenticated?
+      .btn-group
+        <button type="button" class="btn btn-primary dropdown-toggle btn-lg" data-toggle="dropdown">
+          | Tracker-plugin herunterladen 
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="https://github.com/sbange/re-thunderbird/releases/download/initial/re-thunderbird.xpi">Plugin für Thunderbird</a></li>
+        </ul>
+
 
       h5 Dein API-Key:
       form

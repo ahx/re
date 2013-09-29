@@ -6,6 +6,7 @@ module ApplicationHelper
   end
 
   def signature_image_url_for(user)
+    return nil unless user
     if user.signature_image_setting == "custom" && user.signature_image.present?
       user.signature_image.url(:mini)
     elsif user.signature_image_setting == "gravatar"

@@ -7,7 +7,9 @@
 
 <div>
   <% if authenticated? %>
-    Du bist angemeldet als <%= browserid_email %>.
+    Du bist angemeldet als
+    <%= image_tag gravatar_url_for(browserid_email), alt: nil %>
+    <%= browserid_email %>.
     <%= logout_link %>
     Dein API-Key: <%= current_user.api_key %>
   <% else %>

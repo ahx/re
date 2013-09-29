@@ -6,9 +6,8 @@ nav.navbar.navbar-default
         '  eingeloggt als:
         = link_to browserid_email, '#'
   ul.nav.navbar-nav.navbar-right
-    li  = link_to "Einstellungen", settings_path
-    li
-      - if authenticated?
-        = logout_link
-      - else
-        = login_link
+    - if authenticated?
+      li  = link_to "Einstellungen", settings_path
+      li  = logout_link
+    - else
+      li = login_link

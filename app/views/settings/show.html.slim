@@ -1,22 +1,24 @@
-= form_for current_user, url: settings_path, :html => {:multipart => true} do |f|
+= form_for current_user, url: settings_path, :html => {multipart: true, role: 'form'} do |f|
   h2 Ändere Dein Tracker-Bild
 
-  div
+  div.radio
     label
       = f.radio_button(:signature_image_setting, "gravatar")
-      | Gravatar
       = image_tag(gravatar_url_for(current_user.email), alt: nil)
-  div
+      br
+      | Gravatar
+  div.radio
     label
       = f.radio_button(:signature_image_setting, "custom")
-      | Eigenes Bild
       = image_tag(current_user.signature_image.url(:mini), alt: nil)
       br
+      | Eigenes Bild
     = f.file_field :signature_image
-  div
+  div.radio
     label
       = f.radio_button(:signature_image_setting, "none")
       | Kein Bild
   p
-    = f.submit 'Einstellung Speichern'
+    = f.submit 'Einstellung Speichern', class: 'btn btn-default'
+    = link_to 'Abbrechen', root_path, class: 'btn btn-link'
 

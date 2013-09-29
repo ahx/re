@@ -13,21 +13,7 @@ html.no-js lang=(I18n.locale || 'de')
         'article aside footer header nav section time'.replace(/\w+/g,function(n){document.createElement(n)})
 
   body
-    nav.navbar.navbar-default
-      .navbar-header
-        = link_to 'Re:', root_url,  class: 'navbar-brand'
-        p.navbar-text.navbar-right
-          - if authenticated?
-            '  eingeloggt als:
-            = link_to browserid_email, '#'
-      ul.nav.navbar-nav.navbar-right
-        - if authenticated?
-          li
-            = logout_link
-        - else
-          li
-            = login_link
-
+    = render 'layouts/navbar'
     .container
       .page-header
         h1

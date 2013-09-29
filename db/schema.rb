@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130929010225) do
+ActiveRecord::Schema.define(version: 20130928195033) do
 
   create_table "trackers", force: true do |t|
     t.string   "sender"

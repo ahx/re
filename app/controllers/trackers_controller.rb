@@ -18,12 +18,16 @@ class TrackersController < ApplicationController
 
     # FIXME Spec this
     if tracker.user.signature_image_setting == 'gravatar'
-      data = Gravatar.new(current_user.email).image_data(size: 50)
+      data = Gravatar.new(tracker.user.email).image_data(size: 50)
       send_data data, type: 'image/jpeg', disposition: 'inline'
-    else
-      image_url = tracker.user.signature_image.versions[:mini].path
-      send_file(image_url || Rails.root.join('app/assets/images/fallback/tracker.png'), disposition: 'inline')
+      return
     end
+    image_path = if tracker.user.signature_image_setting == 'custom'
+      tracker.user.signature_image.versions[:mini].path
+    else
+      Rails.root.join('app/assets/images/fallback/tracker.png')
+    end
+    send_file(image_path, disposition: 'inline')
   end
 
   private

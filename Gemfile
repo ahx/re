@@ -25,15 +25,16 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-
 gem 'slim-rails'
+gem 'bootstrap-sass-rails'
+gem 'font-awesome-rails'
+gem 'zeroclipboard-rails'
 
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-#gem 'turbolinks'
-
-gem 'guard-livereload'
-gem 'better_errors'
-gem 'binding_of_caller'
+group :development do
+  gem 'guard-livereload'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+end
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

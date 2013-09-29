@@ -1,0 +1,51 @@
+doctype 5
+html.no-js lang=(I18n.locale || 'de')
+  head
+    title Re: Email-Empfangsbestätigung für alle!
+    meta name='apple-mobile-web-app-capable' content='yes'
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    = stylesheet_link_tag "application", media: "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+    = setup_browserid debug: false
+    /[if lte IE 8]
+      javascript:
+        'article aside footer header nav section time'.replace(/\w+/g,function(n){document.createElement(n)})
+
+  body
+    nav.navbar.navbar-default
+      .navbar-header
+        = link_to 'Re:', root_url,  class: 'navbar-brand'
+        p.navbar-text.navbar-right
+          - if authenticated?
+            '  eingeloggt als:
+            = link_to browserid_email, '#'
+      ul.nav.navbar-nav.navbar-right
+        - if authenticated?
+          li
+            = logout_link
+        - else
+          li
+            = login_link
+
+    .container
+      .page-header
+        h1
+          ' Re:
+          br
+          small E-Mail Empfangsbestätigung für Jedermann
+      = yield
+
+    hr
+    footer.footer
+      .container
+        p
+          ' Ein
+          = link_to 'BremenHack', 'http://bremen.stadthack.de'
+          '-Projekt von
+          = link_to 'Andreas Haller', 'http://ahax.de'
+          ',
+          =' link_to 'Eckhard Rotte', 'http://erotte.de'
+          ' und
+          =' link_to 'Sven Bange', 'http://spurtreu.de'
+

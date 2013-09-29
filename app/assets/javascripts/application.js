@@ -14,3 +14,9 @@
 
 //= require jquery
 //= require browserid
+//= require twitter/bootstrap
+//= require zeroclipboard
+
+$(document).ready(function() {
+  var clip = new ZeroClipboard($("button[data-clipboard-target='current-user-api-key']"));
+})

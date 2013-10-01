@@ -9,6 +9,10 @@ Re::Application.routes.draw do
 
   root 'homepage#index'
 
+  PagesController.action_methods.each do |action|
+     get "/#{action}", to: "pages##{action}", as: "#{action}_page"
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -49,7 +53,7 @@ Re::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'

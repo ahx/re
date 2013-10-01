@@ -16,11 +16,6 @@ html.no-js lang=(I18n.locale || 'de')
     - if authenticated?
       = render 'layouts/navbar'
     .container
-      .page-header
-        h1
-          ' Re:
-          br
-          small E-Mail Empfangsbestätigung für Jedermann
       = yield
 
     hr

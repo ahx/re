@@ -1,24 +1,25 @@
-= form_for current_user, url: settings_path, :html => {multipart: true, role: 'form'} do |f|
-  h2 Ändere Dein Tracker-Bild
-
-  div.radio
-    label
-      = f.radio_button(:signature_image_setting, "gravatar")
-      = image_tag(gravatar_url_for(current_user.email), alt: nil)
-      br
-      | Gravatar
-  div.radio
-    label
-      = f.radio_button(:signature_image_setting, "custom")
-      = image_tag(current_user.signature_image.url(:mini), alt: nil)
-      br
-      | Eigenes Bild
-    = f.file_field :signature_image
-  div.radio
-    label
-      = f.radio_button(:signature_image_setting, "none")
-      | Kein Bild
+= form_for current_user, url: settings_path, :html => {multipart: true, role: 'form', class: 'form-vertical'} do |f|
+  h4 Ändere Dein Tracker-Bild
+  p Du kannst selbst bestimmen, ob dein Tracker-Code unsichbar sein soll oder ob eine Grafik eingefügt werden soll.
+  .form-group
+    .radio
+      label
+        = f.radio_button(:signature_image_setting, "gravatar")
+        = image_tag(gravatar_url_for(current_user.email), alt: nil)
+        ' Gravatar
+  .form-group
+    .radio
+      label
+        = f.radio_button(:signature_image_setting, "custom")
+        = image_tag(current_user.signature_image.url(:mini), alt: nil)
+        ' Eigenes Bild
+      = f.file_field :signature_image
+  .form-group
+    .radio
+      label
+        = f.radio_button(:signature_image_setting, "none")
+        ' Kein Bild
   p
-    = f.submit 'Einstellung Speichern', class: 'btn btn-default'
+    = f.submit 'Einstellung Speichern', class: 'btn btn-primary'
     = link_to 'Abbrechen', root_path, class: 'btn btn-link'
 

@@ -1,6 +1,7 @@
 class TrackersController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :require_api_authentication, only: :create
+  helper_method :client_ip
 
   def create
     @tracker = Tracker.create!(message_token: SecureRandom.uuid,
@@ -13,7 +14,7 @@ class TrackersController < ApplicationController
 
   def show
     tracker = Tracker.where(message_token: params[:id]).first!
-    view = View.create!(tracker: tracker, request_ip: request.remote_ip, user_agent: request.user_agent)
+    view = View.create!(tracker: tracker, request_ip: client_ip, user_agent: request.user_agent)
     ReceiptMailer.read_confirmation(tracker, view).deliver
 
     # FIXME Spec this
@@ -41,4 +42,10 @@ class TrackersController < ApplicationController
   def current_api_user
     User.where(api_key: params[:api_key]).first
   end
+
+  def client_ip
+    header_ip = request.env['HTTP_X_FORWARDED_FOR'].try(:split, ',').try(:first)
+    header_ip || request.remote_ip
+  end
+
 end

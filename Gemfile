@@ -15,6 +15,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 
 gem 'gravatar-ultimate', require: 'gravatar'
+gem 'redcarpet'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'

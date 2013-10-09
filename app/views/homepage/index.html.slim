@@ -38,5 +38,15 @@
       = link_to login_path, class: 'browserid_login btn btn-primary btn-lg'
         | Mit E-Mail anmelden
 
-div(style="text-align: center;")
-  = image_tag 'briefe.png'
+
+.row
+  .col-md-8.col-md-offset-2
+    h3 Projektidee
+    .text
+      markdown:
+        Behörden und große Unternehmen wie z.B. Google speichern und analysieren alle Anfragen an ihre Server, um mehr über ihre Kunden zu erfahren. Das Projekt Re will solche Methoden aufzeigen und transparent machen, indem es dem Kunden bzw. Bürger die gleichen Werkzeuge bereitstellt. Mit _Re_ kann jedermann das Verhalten von Unternehmen und Behörden analysieren.
+
+        Beim BremenHack wurde ein Server entwickelt, der jedem eine Datensammlung und eine Auswertung erlaubt. Als erstes Beispiel für eine konkrete Datensammlung stellt Re ein Add-On für das E-Mail-Programm Thunderbird zur Verfügung. Es sammelt Daten über den Empfänger einer E-Mail und meldet z.B. jedes Öffnen der Email an den Versender: eine "Empfangsbestätigung für jedermann".
+
+  div(style="text-align: center;")
+    = image_tag 'briefe.png'

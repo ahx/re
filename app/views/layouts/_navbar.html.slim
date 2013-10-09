@@ -1,13 +1,14 @@
 nav.navbar.navbar-default
-  .navbar-header
-    = link_to 'Re:', root_url,  class: 'navbar-brand'
-    p.navbar-text.navbar-right
+  .container
+    .navbar-header
+      = link_to 'Re:', root_url,  class: 'navbar-brand'
+      p.navbar-text.navbar-right
+        - if authenticated?
+          '  eingeloggt als
+          = link_to browserid_email, settings_path
+    ul.nav.navbar-nav.navbar-right
       - if authenticated?
-        '  eingeloggt als
-        = link_to browserid_email, settings_path
-  ul.nav.navbar-nav.navbar-right
-    - if authenticated?
-      li  = link_to "Einstellungen", settings_path
-      li  = logout_link
-    - else
-      li = login_link
+        li  = link_to "Einstellungen", settings_path
+        li  = logout_link "Abmelden"
+      - else
+        li = login_link

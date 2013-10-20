@@ -14,9 +14,10 @@ class TrackersController < ApplicationController
 
   def show
     tracker = Tracker.where(message_token: params[:id]).first!
-    view = View.create!(tracker: tracker, request_ip: client_ip, user_agent: request.user_agent)
-    ReceiptMailer.read_confirmation(tracker, view).deliver
-
+    unless params[:notrack]
+      view = View.create!(tracker: tracker, request_ip: client_ip, user_agent: request.user_agent)
+      ReceiptMailer.read_confirmation(tracker, view).deliver
+    end
     # FIXME Spec this
     if tracker.user.signature_image_setting == 'gravatar'
       data = Gravatar.new(tracker.user.email).image_data(size: 50)

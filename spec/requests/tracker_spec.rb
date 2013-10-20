@@ -20,6 +20,7 @@ describe 'tracking' do
     expect(response.body).to include(%(<img src="#{url}" moz-do-not-send="true">))
     get url
     expect(response.status).to eq 200
+    expect(View.where(tracker: tracker).count).to eq 1
 
     email = ActionMailer::Base.deliveries.last
     email.to.should include(user.email)
@@ -41,7 +42,8 @@ describe 'tracking' do
       sender: user.email,
       api_key: 'unknown'
     }
-
     expect(response.status).to eq 401
   end
+
+
 end

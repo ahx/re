@@ -74,7 +74,7 @@ Re::Application.configure do
        :port => 587,
        :domain => "re.mailgun.org",
        :user_name => "postmaster@re.mailgun.org",
-       :password => "7y8j63e7tek7"
+       :password => "mailgunPW"
   }
 
   # Ignore bad email addresses and do not raise email delivery errors.
